@@ -1,0 +1,2 @@
+lstat for decide is DIR?
+fork + execlp + wait?
