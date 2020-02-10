@@ -11,6 +11,10 @@ void Tail(FILE *f) {
   int i;
   for (i = 0; i < 10; ++i) {
     tail[i] = (char*) malloc(length);
+    if (tail[i] == NULL) {
+      perror("malloc");
+      exit(1);
+    }
   }
 
   while (fgets(buff, length + 1, f) != NULL) {
@@ -19,6 +23,10 @@ void Tail(FILE *f) {
         strcpy(tail[current], buff);
       } else {
         tail[current] = (char*) realloc(tail[current], len);
+        if (tail[current] == NULL) {
+          perror("realloc");
+          exit(1);
+        }
         strcat(tail[current], buff);
         len = length;
       }
@@ -32,6 +40,10 @@ void Tail(FILE *f) {
         strcpy(tail[current], buff);
       } else {
         tail[current] = (char*) realloc(tail[current], len);
+        if (tail[current] == NULL) {
+          perror("realloc");
+          exit(1);
+        }
         strcat(tail[current], buff);
       }
       len += length;
